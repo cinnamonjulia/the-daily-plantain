@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "daily-plantain",
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": ["-c", "mkdir -p /private/tmp/daily-plantain && cp '/Users/juliacinnamon/Desktop/The Daily Plantain/index.html' /private/tmp/daily-plantain/ 2>/dev/null; cd /private/tmp/daily-plantain && exec /usr/bin/python3 -m http.server 4141"],
+      "port": 4141
+    }
+  ]
+}
