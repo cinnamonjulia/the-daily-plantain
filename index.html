@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Daily Plantain 🍌 — for Barry Pechet</title>
+<title>The Daily Plantain 🍌 — for Barry</title>
 <style>
   :root {
     --plantain-green: #9bb84a;
@@ -93,6 +93,7 @@
   .btn:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--ink); }
   .btn:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
   .btn.primary { background: var(--plantain-yellow); }
+  a.btn { text-decoration: none; display: inline-block; }
 
   .hint { font-size: 0.9rem; color: #8a7a5c; margin-top: 10px; font-style: italic; }
 
@@ -338,7 +339,7 @@
   <div class="tagline">Potassium for your soul. A plantain a day keeps the deportation away.</div>
   <div class="dateline">
     <span id="edition-date"></span>
-    <span>Est. 2026 · Barry Pechet Edition</span>
+    <span>Est. 2026 · Barry Edition</span>
     <span>Vol. 1 · Free-ish</span>
   </div>
   <div id="streak"></div>
@@ -347,7 +348,7 @@
 <main id="app"></main>
 
 <footer>
-  Published daily for Barry Pechet. Not affiliated with Immigration, Refugees and Citizenship Canada. Probably.
+  Published daily for Barry. Not affiliated with Immigration, Refugees and Citizenship Canada. Probably.
 </footer>
 
 <div id="error-overlay">
@@ -431,10 +432,11 @@ function seedFrom(str) {
   };
 }
 const rand = seedFrom(dayKey);
-const dayRoll = rand();
-// roughly 1 in 3 days, banana imposters infiltrate the bunch
+const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+const daysSinceEpoch = Math.floor((today - new Date(1970, 0, 1)) / 86400000);
+// every 3rd day, banana imposters infiltrate the bunch — guaranteed, like clockwork
 const forceBanana = new URLSearchParams(location.search).get('banana');
-const isBananaDay = forceBanana === '1' ? true : forceBanana === '0' ? false : dayRoll < 0.34;
+const isBananaDay = forceBanana === '1' ? true : forceBanana === '0' ? false : daysSinceEpoch % 3 === 0;
 
 const QUOTES = [
   ["Barry, you don't have to be ripe to be ready.", "— Ancient Plantain Proverb"],
@@ -458,31 +460,310 @@ const QUOTES = [
   ["Peels fall away so the good stuff can shine. Let go of what you don't need.", "— Minimalist Monk of the Grove"],
   ["Sweet or savory, you get to decide who you are today.", "— The Maduro Method"],
   ["Ripen at your own pace. The counter has no deadline.", "— Slow Fruit Movement"],
+  ["The banana bends because it is weak. The plantain bends because it chooses to.", "— Dojo of the Pan"],
+  ["Fry hard. Stay humble.", "— Coach Plátano"],
+  ["You were not put on this earth to be lightly snacked upon, Barry.", "— The Editors"],
+  ["A watched plantain never ripens. Go live your life and check back Thursday.", "— Kitchen Stoic"],
+  ["Golden is not a color. It is a decision.", "— The Maduro Method"],
+  ["Today's forecast: 100% chance of potassium.", "— Plantain Meteorological Service"],
+  ["Nobody peels greatness on the first try.", "— Tostone Philosophy 101"],
+  ["The pan is hot, the oil is ready, and destiny is diagonal-sliced.", "— Chef Universo"],
+  ["Be firm when the world is mushy. Be sweet when the world is firm.", "— The Peel Sutras"],
+  ["A plantain in the hand is worth two bananas in the bunch.", "— Fruit Market Economics, 3rd Ed."],
+  ["You've survived 100% of your worst fryings, Barry.", "— Motivational Produce Weekly"],
+  ["Great things take 20 minutes at 350 degrees.", "— Oven Mitt Oracle"],
+  ["The starch you carry today is the sweetness you become tomorrow.", "— Ripening Almanac"],
+  ["Never explain yourself to a fruit fly.", "— Countertop Confucius"],
+  ["Your peel is not your personality.", "— Inner Fruit Institute"],
+  ["Even in a fruit bowl full of apples, be unmistakably plantain.", "— Confidence Quarterly"],
+  ["Some see a starchy fruit. Others see breakfast, lunch, and dinner. Perspective, Barry.", "— Optimist's Cookbook"],
+  ["It is not the ripeness of the plantain but the readiness of the pan.", "— Ancient Plantain Proverb"],
+  ["Flip yourself before life flips you.", "— Spatula Sensei"],
+  ["The greatest tostone was once flattened. Twice.", "— Abuela Wisdom, Vol. 3"],
+  ["No plantain has ever regretted becoming maduros.", "— The Maduro Method"],
+  ["A little oil, a little salt, a little faith.", "— Sunday Kitchen Hymnal"],
+  ["Do not fear the mash. Mofongo is just a plantain that found its people.", "— Mortar & Pestle Monthly"],
+  ["Green is not a flaw. Green is a schedule.", "— Slow Fruit Movement"],
+  ["Barry, the fruit bowl is a waiting room, not a home.", "— The Daily Plantain"],
+  ["Bananas peak. Plantains transform.", "— Kitchen Stoic"],
+  ["Whatever is weighing you down, it's probably not potassium.", "— Dr. K. Supplemental"],
+  ["Sizzle is just applause from the pan.", "— Chef Universo"],
+  ["The counter is temporary. The plate is destiny.", "— The Peel Sutras"],
+  ["Every expert fryer once burned the first batch.", "— Culinary School Dropout Digest"],
+  ["A plantain does not rush its ripening for anyone's smoothie.", "— Slow Fruit Movement"],
+  ["Bruises are just proof you showed up to the market.", "— Caribbean Kitchen Codex"],
+  ["Speak softly and carry a big tostonera.", "— Theodore Roosevelt (disputed)"],
+  ["Salt to taste. Believe to excess.", "— Coach Plátano"],
+  ["A banana in a suit is still a banana, Barry.", "— The Ministry of Fruit Affairs"],
+  ["Choose the pan you want to sizzle in, and get in it.", "— Zen and the Art of Maduros"],
+  ["Doubt is a fruit fly. Wave it off and keep cooking.", "— Countertop Confucius"],
+  ["Nothing golden happens on low heat.", "— The Maduro Method"],
+  ["Real growth is measured in spots, not in likes.", "— Ripening Almanac"],
+  ["When they go low, fry high.", "— Kitchen Diplomacy Handbook"],
+  ["You cannot pour from an empty peel.", "— Inner Fruit Institute"],
+  ["A plantain never apologizes for taking up more room than a banana. Neither should you.", "— Confidence Quarterly"],
+  ["Somewhere, someone is googling 'what to do with plantains' and the answer is everything.", "— Search Engine of the Soul"],
+  ["Stand tall. Stay dense. Resist mashing until it's on your terms.", "— Mofongo Manifesto"],
+  ["The oil remembers those who dared to sizzle.", "— Fryer's Almanac"],
+  ["Wear your spots like medals, Barry.", "— Motivational Produce Weekly"],
+  ["Being called 'just a big banana' is the plantain's villain origin story.", "— The Editors"],
+  ["Maturity is realizing the peel was protecting you, not holding you back.", "— The Peel Sutras"],
+  ["A quiet plantain in the pantry is still louder than a loud banana anywhere.", "— Pantry Politics Weekly"],
+  ["Fortune favors the pre-heated.", "— Fryer's Almanac"],
+  ["Never trust a fruit that ripens overnight.", "— Kitchen Stoic"],
+  ["Consistency, Barry. Show up daily, like potassium.", "— Dr. K. Supplemental"],
+  ["Your best days are still up there on the... plant? Tree? Either way, they're coming.", "— Fact-Check Pending"],
+  ["The plantain that hesitates gets banana bread made of it. Wait, no. Stay alert regardless.", "— Fact-Check Pending"],
+  ["Peel pressure is not real pressure.", "— Inner Fruit Institute"],
+  ["Get you a fruit that can do both: tostones AND maduros.", "— Relationship Advice for Produce"],
+  ["The frying pan of today is the plate of tomorrow.", "— Zen and the Art of Maduros"],
+  ["A goal without a recipe is just a craving.", "— Optimist's Cookbook"],
+  ["Barry, mediocrity is a banana thing.", "— The Editors"],
+  ["Sweat is just your inner oil coming to temperature.", "— Coach Plátano"],
+  ["First they ignore you, then they laugh at you, then they ask for your tostones recipe.", "— Gandhi (heavily paraphrased)"],
+  ["Ask not what your plantain can do for you — you know exactly what it can do. It's delicious.", "— JFK (approximately)"],
+  ["I fry, therefore I am.", "— Descartes (in the kitchen)"],
+  ["To peel or not to peel was never actually a question.", "— Hamlet, Act Breakfast"],
+  ["Give me plantains or give me... actually just the plantains.", "— Patrick Henry (revised)"],
+  ["The unexamined plantain is still worth eating.", "— Socrates (probably)"],
+  ["Float like a butterfly, fry like a maduro.", "— Muhammad Ali (adjacent)"],
+  ["One small peel for Barry, one giant leap for breakfast.", "— Mission Control"],
+  ["It always seems impossible until it's fried.", "— Nelson Mandela (kitchen remix)"],
+  ["Be the plantain you wish to see in the world.", "— Gandhi (again, sorry)"],
+  ["A true Canadian plantain says sorry to the pan.", "— Canadian Fruit Etiquette Guide"],
+  ["Maple syrup on fried plantains is not a crime. It's a treaty.", "— Canada–Caribbean Accord, Article 7"],
+  ["Stay frosty, ripen slowly. The Canadian way.", "— The Great White Plantain"],
+  ["You can take the plantain out of the tropics, but Canada will still issue it a health card.", "— Ministry of Fruit Affairs"],
+  ["A plantain that survives a Canadian winter can survive anything, Barry.", "— The Great White Plantain"],
+  ["Every double-double deserves a side of double-fried.", "— Tim Hortons Suggestion Box (rejected)"],
+  ["The plantain does not fear the toboggan. The plantain IS the toboggan.", "— Winter Sports Almanac"],
+  ["In Canada, even the plantains are polite. They still fry harder than anyone.", "— Canadian Fruit Etiquette Guide"],
+  ["O plantain, our home and native starch.", "— The Anthem, Unofficial Verse 12"],
+  ["'Eh' is a full sentence. So is 'plantain.'", "— Canadian Grammar Council"],
+  ["Rest is part of the recipe.", "— Sunday Kitchen Hymnal"],
+  ["Your softness is not weakness. It's ripeness.", "— Ripening Almanac"],
+  ["Progress is quiet. Like a plantain ripening in a paper bag.", "— Slow Fruit Movement"],
+  ["You don't need everyone's approval. Just the pan's.", "— Fryer's Almanac"],
+  ["Comparison is the thief of flavor.", "— The Peel Sutras"],
+  ["The bunch you hang with determines how you ripen.", "— Plantain Farmers' Almanac"],
+  ["Start where you are. Use what you have. It's probably a plantain.", "— Optimist's Cookbook"],
+  ["Discipline is choosing the cutting board over the couch.", "— Coach Plátano"],
+  ["Small steps, Barry. Even a tostone gets flattened one press at a time.", "— Tostone Philosophy 101"],
+  ["What the caterpillar calls a bruise, the chef calls caramelization.", "— Chef Universo"],
+  ["Monday is just the pan pre-heating for the week.", "— Weekday Wisdom Digest"],
+  ["Nobody's peel looks perfect before 9 a.m.", "— Weekday Wisdom Digest"],
+  ["Meetings that could have been emails. Bananas that could have been plantains. The world is full of waste, Barry.", "— Office Kitchen Bulletin"],
+  ["Reply-all with confidence. Fry with more.", "— Office Kitchen Bulletin"],
+  ["Take your break. The plantain isn't going anywhere. That's the whole point of starch.", "— HR Department of the Soul"],
+  ["Deadlines ripen faster than plantains. Plan accordingly.", "— Project Management for Produce"],
+  ["Your inbox is not the boss of your potassium.", "— HR Department of the Soul"],
+  ["Some days you're the pan, some days you're the plantain. Either way, dinner happens.", "— Weekday Wisdom Digest"],
+  ["Ambition is a green plantain: give it a windowsill and a week.", "— Ripening Almanac"],
+  ["Do one hard thing a day. Peeling counts.", "— Coach Plátano"],
+  ["The mirror shows a person. The pan shows potential.", "— Chef Universo"],
+  ["Hunger is temporary. Tostones are also temporary. Eat quickly.", "— The Realist's Cookbook"],
+  ["You miss 100% of the plantains you don't fry.", "— Wayne Gretzky (misquoted, but Canadian)"],
+  ["Life is short. Fry the good plantain.", "— The Realist's Cookbook"],
+  ["The secret ingredient is always garlic. The second secret is believing in yourself.", "— Mortar & Pestle Monthly"],
+  ["Anyone can slip on a banana peel. It takes vision to slip on greatness.", "— Motivational Produce Weekly"],
+  ["A dull knife is more dangerous than a sharp truth.", "— Kitchen Stoic"],
+  ["The best time to plant a plantain tree was 10 months ago. The second best time is to just buy plantains, Barry.", "— Practical Farming Weekly"],
+  ["Fry it till you make it.", "— Coach Plátano"],
+  ["Some wounds heal. Some become maduros.", "— Caribbean Kitchen Codex"],
+  ["Winter is coming. So is dinner. Only one of them is fried.", "— The Great White Plantain"],
+  ["Character is what you do when the oil splatters.", "— Fryer's Almanac"],
+  ["You are one plantain away from a better mood. Statistically.", "— Dr. K. Supplemental"],
+  ["No rain, no fruit. No oil, no glory.", "— Plantain Farmers' Almanac"],
+  ["Elegance is refusal — of the banana.", "— Coco Chanel (produce edition)"],
+  ["The plantain abides.", "— The Big Lebowski (fruit cut)"],
+  ["May your oil be hot and your Wi-Fi stable.", "— Modern Blessings, Vol. 4"],
+  ["Trust the process. Especially the double-frying part.", "— Tostone Philosophy 101"],
+  ["An idle plantain ripens anyway. Growth doesn't need your permission.", "— Ripening Almanac"],
+  ["Never let a banana hold the aux cord of your life.", "— The Editors"],
+  ["Potassium levels: elevated. Excuses: declined.", "— Dr. K. Supplemental"],
+  ["Your ancestors fried plantains without non-stick pans. You have no excuses, Barry.", "— Abuela Wisdom, Vol. 4"],
+  ["Storms make trees take deeper roots and plantains taste sweeter. Unverified but beautiful.", "— Fact-Check Pending"],
+  ["Do not go gentle into that good pan. Actually, do — gentle is exactly how you avoid splatter.", "— Dylan Thomas (safety edit)"],
+  ["A smooth peel never made a skilled peeler.", "— Ancient Plantain Proverb"],
+  ["Everything you want is on the other side of the peel.", "— Inner Fruit Institute"],
+  ["Keep your friends close and your tostonera closer.", "— Kitchen Diplomacy Handbook"],
+  ["The plantain doesn't count calories. The calories count themselves lucky.", "— Confidence Quarterly"],
+  ["If you can dodge a fruit fly, you can dodge anything.", "— Countertop Confucius"],
+  ["Rome wasn't built in a day, but pastelón takes about 90 minutes.", "— Practical Kitchen Timelines"],
+  ["Silence the doubters. Then thank them politely. This is a Canadian publication.", "— The Editors"],
+  ["Live every day like the oil is already hot.", "— Fryer's Almanac"],
+  ["Your comfort zone is a fruit bowl. Nothing ripens right in there.", "— Slow Fruit Movement"],
+  ["Half of cooking is confidence. The other half is not touching the hot part.", "— Culinary School Dropout Digest"],
+  ["The plantain knows its worth: roughly $0.79, and spiritually priceless.", "— Fruit Market Economics, 3rd Ed."],
+  ["Never make a permanent decision on an empty stomach or an unripe plantain.", "— Countertop Confucius"],
+  ["Some heroes wear capes. Yours wears a peel.", "— Motivational Produce Weekly"],
+  ["Behind every great Barry is a slightly greater plantain.", "— The Daily Plantain"],
+  ["Sweetness is earned one spot at a time.", "— Ripening Almanac"],
+  ["It's not hoarding if it's plantains.", "— Pantry Politics Weekly"],
+  ["Set boundaries like a peel: firm, protective, biodegradable.", "— Inner Fruit Institute"],
+  ["The pan doesn't care about your bad day. That's its gift to you.", "— Zen and the Art of Maduros"],
+  ["Aim for the moon. If you miss, you're still holding a plantain, which is objectively great.", "— Optimist's Cookbook"],
+  ["You can't control the ripeness at the store. You can control the recipe at home.", "— Kitchen Stoic"],
+  ["Fear is just excitement without garlic.", "— Mortar & Pestle Monthly"],
+  ["Legends aren't born. They're double-fried.", "— Tostone Philosophy 101"],
+  ["Every plate is a fresh start.", "— Sunday Kitchen Hymnal"],
+  ["Being underestimated is a plantain's home-field advantage.", "— Confidence Quarterly"],
+  ["The universe put 220 calories of pure possibility in a green wrapper. Act accordingly.", "— Dr. K. Supplemental"],
+  ["Tomorrow's maduros are ripening in today's patience.", "— The Maduro Method"],
+  ["A banana thinks a week ahead. A plantain thinks a season ahead.", "— Fruit Market Economics, 3rd Ed."],
+  ["You've never met an angry person holding a plate of maduros.", "— Peer-Reviewed Vibes Quarterly"],
+  ["The knife dulls. The pan scratches. The plantain endures.", "— The Peel Sutras"],
+  ["When in doubt, add plantains. When not in doubt, also add plantains.", "— The Realist's Cookbook"],
+  ["Motivation gets you peeling. Habit keeps you frying.", "— Coach Plátano"],
+  ["The fruit bowl is full of tourists. Be a resident of the pan.", "— Pantry Politics Weekly"],
+  ["No one ever wrote a newspaper for a banana, Barry. Think about that.", "— The Daily Plantain"],
+  ["Today's plantain is tomorrow's story.", "— The Daily Plantain Editorial Board"],
+  ["Stay golden, Barry. Stay golden.", "— The Outsiders (breakfast edition)"],
 ];
-const quoteIndex = Math.floor(rand() * QUOTES.length);
+// day-of-year indexing: a new quote every single day, no repeats for ~6 months,
+// and the year offset shuffles the cycle so Jan 1 isn't the same quote every year
+const quoteIndex = (dayOfYear + today.getFullYear() * 137) % QUOTES.length;
 const [quoteText, quoteAttr] = QUOTES[quoteIndex];
 
+/* ============ REAL RECIPES — rotates daily, links Barry can actually cook ============ */
+const REAL_RECIPES = [
+  { emoji: '🥇', name: 'Tostones (Twice-Fried Green Plantains)', desc: 'Crispy, salty, smashed — the gateway plantain.', url: 'https://www.budgetbytes.com/tostones-fried-green-plantain/' },
+  { emoji: '🍯', name: 'Plátanos Maduros (Sweet Fried Plantains)', desc: 'Caramelized edges, soft middle, done in 15 minutes.', url: 'https://asassyspoon.com/sweet-plantains-platanos-maduros/' },
+  { emoji: '🧄', name: 'Mofongo (Garlic Mashed Plantains)', desc: 'Puerto Rican comfort in a dome. Bring a mortar and courage.', url: 'https://salimaskitchen.com/mofongo/' },
+  { emoji: '🍳', name: 'Mangú (Dominican Mashed Plantains)', desc: 'Breakfast of champions — serve with los tres golpes.', url: 'https://www.dominicancooking.com/mangu' },
+  { emoji: '🌶️', name: 'Kelewele (Ghanaian Spicy Fried Plantains)', desc: 'Ginger, cayenne, street-food glory.', url: 'https://cheflolaskitchen.com/easy-kelewele-spicy-fried-plantains/' },
+  { emoji: '🥔', name: 'Baked Plantain Chips', desc: 'Crunchy, oven-baked, dangerously snackable.', url: 'https://downshiftology.com/recipes/baked-plantain-chips/' },
+  { emoji: '✨', name: 'Fried Ripe Plantains (Dodo)', desc: 'The West African classic — golden and unbeatable.', url: 'https://www.africanbites.com/fried-plantains/' },
+  { emoji: '🫓', name: 'Pastelón (Sweet Plantain "Lasagna")', desc: 'Layers of maduros, beef, and cheese. A commitment. Worth it.', url: 'https://www.delish.com/cooking/recipe-ideas/a28691602/pastelon-recipe/' },
+];
+const dailyRecipe = REAL_RECIPES[dayOfYear % REAL_RECIPES.length];
+
+/* ============ ROTATING TAGLINES ============ */
+const TAGLINES = [
+  'Potassium for your soul. A plantain a day keeps the deportation away.',
+  "All the news that's fit to peel.",
+  "Canada's most trusted single-fruit newspaper.",
+  'Serving one (1) reader since 2026.',
+  'Yellow journalism, but in a good way.',
+  'The only paper endorsed by zero bananas.',
+  'Fresh. Local. Legally distinct from a banana.',
+  'Now with 100% more maple syrup than The Globe and Mail.',
+  'Ripening stories so you don\'t have to.',
+  'Breaking peels around the clock.',
+];
+document.querySelector('.tagline').textContent = TAGLINES[dayOfYear % TAGLINES.length];
+
+/* ============ DAILY LOOK — the fruit dresses differently every day ============ */
+const lookRand = seedFrom('look-' + dayKey);
+const PLANTAIN_SKINS = [
+  ['#adc153', '#7a8f2e', '#8fa53c'],
+  ['#b9c96a', '#84933a', '#9cb14e'],
+  ['#9fb84e', '#6f8429', '#87a038'],
+  ['#c2cf74', '#8a9a3e', '#a4b656'],
+  ['#a5bd45', '#748a26', '#8ea637'],
+];
+const BANANA_SKINS = [
+  ['#ffe135', '#d4a017', '#e8c93e'],
+  ['#ffd94d', '#c99a14', '#ecc84a'],
+  ['#f9e04b', '#d1a41f', '#e6ce55'],
+  ['#ffe86b', '#d8ab24', '#f0d55e'],
+];
+const plantainSkin = PLANTAIN_SKINS[Math.floor(lookRand() * PLANTAIN_SKINS.length)];
+const bananaSkin = BANANA_SKINS[Math.floor(lookRand() * BANANA_SKINS.length)];
+const dailyTilt = Math.round(lookRand() * 12 - 6);
+// candidate blemish sites along each fruit's body: [cx, cy, rx, ry, rotation]
+const PLANTAIN_SPOT_SITES = [
+  [90, 120, 9, 5, 40], [130, 150, 7, 4, 25], [62, 80, 6, 3.5, 60],
+  [105, 135, 8, 4.5, 35], [75, 100, 5, 3, 50], [145, 158, 6, 3.5, 15], [55, 62, 5, 3, 70],
+];
+const plantainSpots = PLANTAIN_SPOT_SITES.filter(() => lookRand() < 0.55);
+if (!plantainSpots.length) plantainSpots.push(PLANTAIN_SPOT_SITES[0]);
+const BANANA_SPOT_SITES = [[140, 152, 5, 3, 0], [118, 138, 4, 2.5, 20], [90, 112, 4, 2.5, 35]];
+const bananaSpots = BANANA_SPOT_SITES.filter(() => lookRand() < 0.45);
+const ACCESSORIES = ['none', 'toque', 'shades', 'sticker', 'bowtie', 'stache'];
+const dailyAccessory = ACCESSORIES[Math.floor(lookRand() * ACCESSORIES.length)];
+
 /* ============ FRUIT SVGs ============ */
+function spotsSVG(sites, opacity, fill) {
+  return sites.map(([x, y, rx, ry, rot]) =>
+    `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${fill}" opacity="${opacity}" transform="rotate(${rot} ${x} ${y})"/>`
+  ).join('');
+}
+// today's accessory, positioned per fruit — both species wear it, so no cheating on banana day
+function accessorySVG(fruit) {
+  const A = fruit === 'plantain'
+    ? { hat: [45, 24], face: [64, 74, 48], sticker: [108, 128], bow: [54, 52, 40] }
+    : { hat: [55, 34], face: [74, 82, 42], sticker: [118, 132], bow: [64, 60, 35] };
+  switch (dailyAccessory) {
+    case 'toque': {
+      const [x, y] = A.hat;
+      return `<g transform="translate(${x} ${y})">
+        <path d="M-15 0 C-15 -16, 15 -16, 15 0 Z" fill="#d52b1e" stroke="#a11c12" stroke-width="1.5"/>
+        <rect x="-16" y="-2" width="32" height="6.5" rx="3" fill="#fff" stroke="#ddd" stroke-width="1"/>
+        <circle cx="0" cy="-15" r="4" fill="#fff" stroke="#ddd" stroke-width="1"/>
+      </g>`;
+    }
+    case 'shades': {
+      const [x, y, r] = A.face;
+      return `<g transform="translate(${x} ${y}) rotate(${r})">
+        <circle cx="-10" cy="0" r="7.5" fill="#26221c"/>
+        <circle cx="10" cy="0" r="7.5" fill="#26221c"/>
+        <line x1="-3" y1="0" x2="3" y2="0" stroke="#26221c" stroke-width="2.5"/>
+        <circle cx="-12" cy="-2" r="2" fill="#6b655c"/>
+        <circle cx="8" cy="-2" r="2" fill="#6b655c"/>
+      </g>`;
+    }
+    case 'sticker': {
+      const [x, y] = A.sticker;
+      return `<g transform="translate(${x} ${y}) rotate(-8)">
+        <circle r="12" fill="#fff" stroke="#d52b1e" stroke-width="2"/>
+        <text y="4.5" text-anchor="middle" font-size="13">🍁</text>
+      </g>`;
+    }
+    case 'bowtie': {
+      const [x, y, r] = A.bow;
+      return `<g transform="translate(${x} ${y}) rotate(${r})">
+        <path d="M-13 -7 L-2 0 L-13 7 Z" fill="#d52b1e" stroke="#a11c12" stroke-width="1.5"/>
+        <path d="M13 -7 L2 0 L13 7 Z" fill="#d52b1e" stroke="#a11c12" stroke-width="1.5"/>
+        <circle r="3" fill="#8b1a10"/>
+      </g>`;
+    }
+    case 'stache': {
+      const [x, y, r] = A.face;
+      return `<g transform="translate(${x} ${y + 11}) rotate(${r})">
+        <path d="M0 0 C-4 -6, -12 -6, -15 -1 C-11 3, -4 3, 0 0 Z" fill="#3a2e1f"/>
+        <path d="M0 0 C4 -6, 12 -6, 15 -1 C11 3, 4 3, 0 0 Z" fill="#3a2e1f"/>
+      </g>`;
+    }
+    default: return '';
+  }
+}
 function plantainSVG(size = 200, id = '') {
-  // bigger, greener, straighter, blemished — a proud plantain
+  // bigger, greener, straighter, blemished — a proud plantain (in today's outfit)
+  const [body, edge, ridge] = plantainSkin;
   return `<svg id="${id}" width="${size}" height="${size}" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <path d="M38 42 C30 90, 55 150, 120 168 C150 176, 172 168, 176 158 C178 152, 170 150, 158 150 C100 148, 62 100, 56 48 C55 38, 52 32, 45 32 C40 32, 39 36, 38 42 Z"
-      fill="#adc153" stroke="#7a8f2e" stroke-width="3"/>
-    <path d="M45 60 C45 100, 70 140, 120 158" fill="none" stroke="#8fa53c" stroke-width="4" opacity="0.7"/>
-    <rect x="38" y="26" width="14" height="14" rx="3" fill="#6d5a2e"/>
-    <ellipse cx="90" cy="120" rx="9" ry="5" fill="#5e4a22" opacity="0.5" transform="rotate(40 90 120)"/>
-    <ellipse cx="130" cy="150" rx="7" ry="4" fill="#5e4a22" opacity="0.5" transform="rotate(25 130 150)"/>
-    <ellipse cx="62" cy="80" rx="6" ry="3.5" fill="#5e4a22" opacity="0.45" transform="rotate(60 62 80)"/>
+    <g transform="rotate(${dailyTilt} 100 100)">
+      <path d="M38 42 C30 90, 55 150, 120 168 C150 176, 172 168, 176 158 C178 152, 170 150, 158 150 C100 148, 62 100, 56 48 C55 38, 52 32, 45 32 C40 32, 39 36, 38 42 Z"
+        fill="${body}" stroke="${edge}" stroke-width="3"/>
+      <path d="M45 60 C45 100, 70 140, 120 158" fill="none" stroke="${ridge}" stroke-width="4" opacity="0.7"/>
+      <rect x="38" y="26" width="14" height="14" rx="3" fill="#6d5a2e"/>
+      ${spotsSVG(plantainSpots, 0.5, '#5e4a22')}
+      ${accessorySVG('plantain')}
+    </g>
   </svg>`;
 }
 function bananaSVG(size = 160, id = '') {
-  // smaller, yellower, curvier — a mere banana
+  // smaller, yellower, curvier — a mere banana (also in today's outfit; imposters imitate)
+  const [body, edge, ridge] = bananaSkin;
   return `<svg id="${id}" width="${size}" height="${size}" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <path d="M48 55 C40 105, 75 155, 140 160 C160 161, 172 152, 170 145 C168 139, 158 141, 146 139 C95 132, 68 95, 66 55 C66 45, 62 40, 56 41 C50 42, 49 48, 48 55 Z"
-      fill="#ffe135" stroke="#d4a017" stroke-width="3"/>
-    <path d="M58 65 C60 100, 85 135, 135 148" fill="none" stroke="#e8c93e" stroke-width="4" opacity="0.8"/>
-    <rect x="49" y="36" width="11" height="11" rx="3" fill="#8a7a3a"/>
-    <ellipse cx="140" cy="152" rx="5" ry="3" fill="#9a7d20" opacity="0.5"/>
+    <g transform="rotate(${dailyTilt} 100 100)">
+      <path d="M48 55 C40 105, 75 155, 140 160 C160 161, 172 152, 170 145 C168 139, 158 141, 146 139 C95 132, 68 95, 66 55 C66 45, 62 40, 56 41 C50 42, 49 48, 48 55 Z"
+        fill="${body}" stroke="${edge}" stroke-width="3"/>
+      <path d="M58 65 C60 100, 85 135, 135 148" fill="none" stroke="${ridge}" stroke-width="4" opacity="0.8"/>
+      <rect x="49" y="36" width="11" height="11" rx="3" fill="#8a7a3a"/>
+      ${spotsSVG(bananaSpots, 0.5, '#9a7d20')}
+      ${accessorySVG('banana')}
+    </g>
   </svg>`;
 }
 function peelablePlantainSVG() {
@@ -493,13 +774,13 @@ function peelablePlantainSVG() {
     <line x1="115" y1="60" x2="115" y2="230" stroke="#e8dcb0" stroke-width="3"/>
     <!-- stem -->
     <rect x="105" y="20" width="20" height="26" rx="5" fill="#6d5a2e"/>
-    <!-- peel strips -->
+    <!-- peel strips, wearing today's skin tone -->
     <path class="peel-strip strip-a" d="M115 45 C80 60, 72 130, 84 220 C88 240, 100 240, 102 220 C94 140, 98 80, 115 55 Z"
-      fill="#adc153" stroke="#7a8f2e" stroke-width="2.5"/>
+      fill="${plantainSkin[0]}" stroke="${plantainSkin[1]}" stroke-width="2.5"/>
     <path class="peel-strip strip-b" d="M115 45 C150 60, 158 130, 146 220 C142 240, 130 240, 128 220 C136 140, 132 80, 115 55 Z"
-      fill="#9bb84a" stroke="#7a8f2e" stroke-width="2.5"/>
+      fill="${plantainSkin[2]}" stroke="${plantainSkin[1]}" stroke-width="2.5"/>
     <path class="peel-strip strip-c" d="M105 48 C100 110, 102 180, 108 225 C111 242, 119 242, 122 225 C128 180, 130 110, 125 48 Z"
-      fill="#b8c95e" stroke="#7a8f2e" stroke-width="2.5"/>
+      fill="${plantainSkin[0]}" stroke="${plantainSkin[1]}" stroke-width="2.5"/>
   </svg>`;
 }
 
@@ -771,7 +1052,14 @@ function revealQuote() {
       <div class="quote-text">“${quoteText}”</div>
       <div class="quote-attr">${quoteAttr}</div>
     </div>
-    <p class="hint">Quote #${quoteIndex + 1} · Fresh today · Same plantain, same wisdom, all day long.</p>
+    <p class="hint">Quote ${quoteIndex + 1} of ${QUOTES.length} · fresh today · a different one tomorrow, guaranteed</p>
+    <div class="recipe-card">
+      <div style="font-size:2.2rem">${dailyRecipe.emoji}</div>
+      <h3 style="margin:6px 0 2px">Tonight's Assignment: ${dailyRecipe.name}</h3>
+      <p class="hint" style="margin:4px 0 12px">${dailyRecipe.desc}</p>
+      <a class="btn small primary" href="${dailyRecipe.url}" target="_blank" rel="noopener">📖 Get the real recipe</a>
+      <p class="hint" style="font-size:0.7rem; margin-top:10px">Recipe ${(dayOfYear % REAL_RECIPES.length) + 1} of ${REAL_RECIPES.length} · rotates daily · actually cookable</p>
+    </div>
     <button class="btn primary" id="copy-btn" onclick="copyQuote()">📋 Copy for the group chat</button>
     <button class="btn" onclick="renderStart()">↩ Back to the produce aisle</button>
   `;
