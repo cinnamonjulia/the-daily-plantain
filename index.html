@@ -706,11 +706,13 @@ function accessorySVG(fruit) {
     case 'shades': {
       const [x, y, r] = A.face;
       return `<g transform="translate(${x} ${y}) rotate(${r})">
-        <circle cx="-10" cy="0" r="7.5" fill="#26221c"/>
-        <circle cx="10" cy="0" r="7.5" fill="#26221c"/>
-        <line x1="-3" y1="0" x2="3" y2="0" stroke="#26221c" stroke-width="2.5"/>
-        <circle cx="-12" cy="-2" r="2" fill="#6b655c"/>
-        <circle cx="8" cy="-2" r="2" fill="#6b655c"/>
+        <line x1="-19" y1="-4" x2="-24" y2="-8" stroke="#26221c" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="19" y1="-4" x2="24" y2="-8" stroke="#26221c" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M-4 -3 Q0 -6 4 -3" stroke="#26221c" stroke-width="2.5" fill="none"/>
+        <rect x="-19" y="-5" width="15" height="11" rx="4.5" fill="#26221c"/>
+        <rect x="4" y="-5" width="15" height="11" rx="4.5" fill="#26221c"/>
+        <line x1="-15" y1="-1.5" x2="-9" y2="-1.5" stroke="#8d857a" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="8" y1="-1.5" x2="14" y2="-1.5" stroke="#8d857a" stroke-width="1.8" stroke-linecap="round"/>
       </g>`;
     }
     case 'sticker': {
